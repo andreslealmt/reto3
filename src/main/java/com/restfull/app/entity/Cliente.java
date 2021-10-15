@@ -22,16 +22,18 @@ public class Cliente {
 	@Column(name = "idClient")
 	private int idClient;
 	
-	@Column(length = 250)
-	private String name;
-	
 	@Column(length = 45)
 	private String email;
 	
 	@Column(length = 45)
 	private String password;
 	
+	@Column(length = 250)
+	private String name;	
+	
+	
 	private int age;
+	
 	
 	@OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
 	@JsonIgnoreProperties("client")

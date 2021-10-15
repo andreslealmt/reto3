@@ -32,6 +32,10 @@ public class Disfraz {
 	@Column(name = "disfraz_id")
 	private int id;	
 	
+	/** variable name */
+	@Column(length = 45)
+	private String name;
+	
 	/** variable brand */
 	@Column(length = 45)
 	private String brand;
@@ -43,15 +47,12 @@ public class Disfraz {
 	@Column(length = 250)
 	private String description;
 	
-	/** variable name */
-	@Column(length = 45)
-	private String name;
-	
 	/** variable category */
 	@ManyToOne
 	@JoinColumn(name="categoria_id")
 	@JsonIgnoreProperties("costumes")	
 	private Categoria category;
+	
 	
 	/** variable messages */	
 	@OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
@@ -62,6 +63,12 @@ public class Disfraz {
 	@OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
 	@JsonIgnoreProperties("costume")
 	private List<Reservacion> reservations;
+	
+	
+	
+	
+	
+	
 	
 	
 	
