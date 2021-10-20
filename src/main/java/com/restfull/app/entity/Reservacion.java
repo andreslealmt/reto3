@@ -2,15 +2,20 @@ package com.restfull.app.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -41,33 +46,28 @@ public class Reservacion implements Serializable{
 	@JsonIgnoreProperties({"reservations","messages"})
 	private Cliente client;
 	
-	
-	private String score = null;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idReservation")	
+	private CalificacionReserva score;
 
 	
 	//===  Getters and Setters ======//
 	
 	
+	
+	
 
 	public int getIdReservation() {
 		return idReservation;
-	}	
+	}
 
-	public String getScore() {
+	public CalificacionReserva getScore() {
 		return score;
 	}
 
-
-
-
-
-	public void setScore(String score) {
+	public void setScore(CalificacionReserva score) {
 		this.score = score;
 	}
-
-
-
-
 
 	public Disfraz getCostume() {
 		return costume;
@@ -77,24 +77,14 @@ public class Reservacion implements Serializable{
 		this.costume = costume;
 	}
 
-
-
-
-
 	public Cliente getClient() {
 		return client;
 	}
 
 
-
-
-
 	public void setClient(Cliente client) {
 		this.client = client;
 	}
-
-
-
 
 
 	public void setIdReservation(int idReservation) {
