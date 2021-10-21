@@ -61,12 +61,12 @@ public class ClienteController {
 	
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<?> deleteCliente(@PathVariable int id){
+	public void deleteCliente(@PathVariable int id){
 		if(!clienteService.getCliente(id).isPresent()) {
-			return ResponseEntity.notFound().build();
+			//return ResponseEntity.notFound().build();
 		}
 		clienteService.deleteCliente(id);
-		return ResponseEntity.ok().build();
+		//return ResponseEntity.ok().build();
 	}
 	
 	

@@ -56,12 +56,12 @@ public class CategoriaController {
 	}
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<?> deleteCategoria(@PathVariable int id){
+	public void deleteCategoria(@PathVariable int id){
 		if(!categoriaService.getCategoria(id).isPresent()) {
-			return ResponseEntity.notFound().build();
+			//return ResponseEntity.notFound().build();
 		}
 		categoriaService.deleteCategoria(id);
-		return ResponseEntity.ok().build();
+		//return ResponseEntity.ok().build();
 	}
 	
 	

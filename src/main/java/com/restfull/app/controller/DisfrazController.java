@@ -61,13 +61,13 @@ public class DisfrazController {
 	}
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<?> deleteDisfraz(@PathVariable int id){
+	public void deleteDisfraz(@PathVariable int id){
 		if(!disfrazService.getDisfraz(id).isPresent()) {
-			return ResponseEntity.notFound().build();
+			//return ResponseEntity.notFound().build();
 		}
 		
 		disfrazService.deleteDisfraz(id);
-		return ResponseEntity.ok().build();
+		//return ResponseEntity.ok().build();
 	}
 
 }
