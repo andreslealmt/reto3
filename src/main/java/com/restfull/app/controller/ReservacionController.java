@@ -44,9 +44,9 @@ public class ReservacionController {
 		return reservacionService.getReservacion(id);
 	}
 	
-	@PutMapping("{id}")
-	public ResponseEntity<?> updateReservacion(@PathVariable int id, @RequestBody Reservacion reservacion){
-		Optional<Reservacion> newReservacion = reservacionService.getReservacion(id);
+	@PutMapping("update")
+	public ResponseEntity<?> updateReservacion(@RequestBody Reservacion reservacion){
+		Optional<Reservacion> newReservacion = reservacionService.getReservacion(reservacion.getIdReservation());
 		if(!newReservacion.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}

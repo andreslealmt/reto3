@@ -44,9 +44,9 @@ public class CategoriaController {
 		return categoriaService.getCategoria(id);
 	}
 	
-	@PutMapping("{id}")
-	public ResponseEntity<?> updateCategoria(@RequestBody Categoria categoria, @PathVariable int id){
-		Optional<Categoria> newCategoria = categoriaService.getCategoria(id);
+	@PutMapping("update")
+	public ResponseEntity<?> updateCategoria(@RequestBody Categoria categoria){
+		Optional<Categoria> newCategoria = categoriaService.getCategoria(categoria.getId());
 		if(!newCategoria.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}

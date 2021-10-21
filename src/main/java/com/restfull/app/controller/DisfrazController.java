@@ -44,9 +44,9 @@ public class DisfrazController {
 		return disfrazService.getDisfraz(id);
 	}
 	
-	@PutMapping("{id}")
-	public ResponseEntity<?> updateDisfraz(@RequestBody Disfraz disfraz, @PathVariable int id) {
-		Optional<Disfraz> newDisfraz = disfrazService.getDisfraz(id);
+	@PutMapping("update")
+	public ResponseEntity<?> updateDisfraz(@RequestBody Disfraz disfraz) {
+		Optional<Disfraz> newDisfraz = disfrazService.getDisfraz(disfraz.getId());
 		if(!newDisfraz.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}

@@ -44,9 +44,9 @@ public class ClienteController {
 		return clienteService.getCliente(idClient);
 	}
 	
-	@PutMapping("{id}")
-	public ResponseEntity<?> updateCliente(@RequestBody Cliente cliente, @PathVariable int id){
-		Optional<Cliente> newCliente = clienteService.getCliente(id);
+	@PutMapping("update")
+	public ResponseEntity<?> updateCliente(@RequestBody Cliente cliente){
+		Optional<Cliente> newCliente = clienteService.getCliente(cliente.getIdClient());
 		if(!newCliente.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}

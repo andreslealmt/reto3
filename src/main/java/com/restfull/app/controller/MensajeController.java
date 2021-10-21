@@ -44,9 +44,9 @@ public class MensajeController {
 		return mensajeService.getMensaje(id);
 	}
 	
-	@PutMapping("{id}")
-	public ResponseEntity<?> updateMensaje(@PathVariable int id, @RequestBody Mensaje mensaje){
-		Optional<Mensaje> newMensaje = mensajeService.getMensaje(id);
+	@PutMapping("update")
+	public ResponseEntity<?> updateMensaje(@RequestBody Mensaje mensaje){
+		Optional<Mensaje> newMensaje = mensajeService.getMensaje(mensaje.getIdMessage());
 		if(!newMensaje.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
