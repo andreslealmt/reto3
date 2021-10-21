@@ -61,6 +61,7 @@ public class ClienteController {
 	
 	
 	@DeleteMapping("{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteCliente(@PathVariable int id){
 		if(!clienteService.getCliente(id).isPresent()) {
 			//return ResponseEntity.notFound().build();

@@ -56,6 +56,7 @@ public class CategoriaController {
 	}
 	
 	@DeleteMapping("{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteCategoria(@PathVariable int id){
 		if(!categoriaService.getCategoria(id).isPresent()) {
 			//return ResponseEntity.notFound().build();

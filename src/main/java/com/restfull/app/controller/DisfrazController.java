@@ -61,6 +61,7 @@ public class DisfrazController {
 	}
 	
 	@DeleteMapping("{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteDisfraz(@PathVariable int id){
 		if(!disfrazService.getDisfraz(id).isPresent()) {
 			//return ResponseEntity.notFound().build();
