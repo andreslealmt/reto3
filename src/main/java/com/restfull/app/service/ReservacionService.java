@@ -118,7 +118,8 @@ public class ReservacionService {
 			}
 		}
 		
-		Map<String , Integer> status = new HashMap<String, Integer>();
+		//Map<String , Integer> status = new HashMap<String, Integer>();
+		LinkedHashMap<String , Integer> status = new LinkedHashMap<>();
 		status.put("completed", completos);
 		status.put("cancelled", cancelados);		
 		
