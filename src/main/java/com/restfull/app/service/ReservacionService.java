@@ -2,6 +2,7 @@ package com.restfull.app.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -118,7 +119,7 @@ public class ReservacionService {
 			}
 		}
 		
-		Map<String , Integer> status = new HashMap<String, Integer>();
+		LinkedHashMap<String , Integer> status = new LinkedHashMap<>();
 		status.put("completed", completos);
 		status.put("cancelled", cancelados);		
 		
