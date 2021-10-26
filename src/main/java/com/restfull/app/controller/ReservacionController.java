@@ -1,6 +1,7 @@
 package com.restfull.app.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +64,33 @@ public class ReservacionController {
 		reservacionService.deleteReservacion(id);
 		return ResponseEntity.ok().build();
 	}
+	
+	@GetMapping("report-dates/{fechaInicio}/{fechaFinal}")
+	public List<Reservacion> reportesFecha(@PathVariable String fechaInicio, @PathVariable String fechaFinal) {		
+		return reservacionService.reportesFecha(fechaInicio, fechaFinal);
+	}
+	
+	@GetMapping("report-status")
+	public Map<String, Integer> reporteStatus(){
+		return reservacionService.reportStatus();
+	}
+	
+	@GetMapping("report-clients")
+	public List<Object> reporteClientes(){
+		return reservacionService.reporteClientes();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
