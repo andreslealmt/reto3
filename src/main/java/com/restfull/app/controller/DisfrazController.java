@@ -36,6 +36,7 @@ public class DisfrazController {
 	@PostMapping("save")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Disfraz saveDisfraz(@RequestBody Disfraz disfraz) {
+		System.out.println(disfraz);
 		return disfrazService.save(disfraz);
 	}
 	
@@ -55,6 +56,7 @@ public class DisfrazController {
 		newDisfraz.get().setDescription(disfraz.getDescription());
 		newDisfraz.get().setName(disfraz.getName());
 		newDisfraz.get().setYear(disfraz.getYear());
+		newDisfraz.get().setCategory(disfraz.getCategory());
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(disfrazService.save(newDisfraz.get()));
 		

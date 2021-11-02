@@ -40,6 +40,10 @@ public class Disfraz {
 	@Column(length = 45)
 	private String brand;
 	
+	private String imagen;
+	
+	private boolean reserva;
+	
 	/** variable year */
 	private int year;
 	
@@ -81,6 +85,22 @@ public class Disfraz {
 
 	public Categoria getCategory() {
 		return category;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public boolean isReserva() {
+		return reserva;
+	}
+
+	public void setReserva(boolean reserva) {
+		this.reserva = reserva;
 	}
 
 	public List<Reservacion> getReservations() {
