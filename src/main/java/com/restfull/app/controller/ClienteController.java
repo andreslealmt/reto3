@@ -53,23 +53,13 @@ public class ClienteController {
 		Optional<Cliente> newCliente = clienteService.getCliente(cliente.getIdClient());
 		if(!newCliente.isPresent()) {
 			return ResponseEntity.notFound().build();
-		}
-		
-		
-		String passwordHashed = newCliente.get().getPassword();
-		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-		
-		if(argon2.verify(passwordHashed, cliente.getPassword())) {
-			newCliente.get().setAge(cliente.getAge());		
-			newCliente.get().setName(cliente.getName());		
-			return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.saveClienteUpdate(newCliente.get()));
-		}		
+		}	
 		
 		
 		newCliente.get().setAge(cliente.getAge());		
 		newCliente.get().setName(cliente.getName());
-		newCliente.get().setPassword(cliente.getPassword());
-		return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.saveCliente(newCliente.get()));
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.saveClienteUpdate(newCliente.get()));
 				
 	}
 	
