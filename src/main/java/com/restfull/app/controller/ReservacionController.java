@@ -1,5 +1,6 @@
 package com.restfull.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -19,7 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.restfull.app.entity.Disfraz;
 import com.restfull.app.entity.Reservacion;
+import com.restfull.app.service.ClienteService;
+import com.restfull.app.service.DisfrazService;
 import com.restfull.app.service.ReservacionService;
 
 @RestController
@@ -29,6 +33,8 @@ public class ReservacionController {
 	
 	@Autowired ReservacionService reservacionService;
 	
+	@Autowired DisfrazService disfrazService;
+	
 	@GetMapping("all")
 	public List<Reservacion> getReservaciones(){
 		return reservacionService.getReservaciones();
@@ -37,6 +43,9 @@ public class ReservacionController {
 	@PostMapping("save")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Reservacion saveReservacion(@RequestBody Reservacion reservacion) {
+		Optional<Disfraz> disfraz = disfrazService.getDisfraz(reservacion.getCostume().getId());
+		disfraz.get().setReserva(true);
+		disfrazService.save(disfraz.get());
 		return reservacionService.saveReservacion(reservacion);
 	}
 	
@@ -79,6 +88,11 @@ public class ReservacionController {
 	public List<Object> reporteClientes(){
 		return reservacionService.reporteClientes();
 	}
+	
+//	@GetMapping("/reservacion-cliente")
+//	public List<Reservacion> reservacionCliente(@PathVariable int id){
+//		return new ArrayList<Reservacion>();
+//	}
 	
 	
 	

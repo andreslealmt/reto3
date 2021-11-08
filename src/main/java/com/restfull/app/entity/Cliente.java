@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -25,8 +26,10 @@ public class Cliente {
 	@Column(length = 45)
 	private String email;
 	
-	@Column(length = 45)
+	//@Column(length = 45)	
 	private String password;
+	
+	private boolean admin = false;
 	
 	@Column(length = 250)
 	private String name;	
@@ -54,6 +57,20 @@ public class Cliente {
 
 	public int getIdClient() {
 		return idClient;
+	}
+
+
+
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+
+
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 

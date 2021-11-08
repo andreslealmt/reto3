@@ -60,6 +60,7 @@ public class CategoriaController {
 	public void deleteCategoria(@PathVariable int id){
 		if(!categoriaService.getCategoria(id).isPresent()) {
 			//return ResponseEntity.notFound().build();
+			System.out.println("no esta");
 		}
 		categoriaService.deleteCategoria(id);
 		//return ResponseEntity.ok().build();

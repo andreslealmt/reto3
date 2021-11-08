@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.restfull.app.entity.Cliente;
+import com.restfull.app.entity.Disfraz;
 import com.restfull.app.entity.Reservacion;
 import com.restfull.app.repository.ClienteRepository;
 import com.restfull.app.repository.ReservacionRepository;
@@ -29,6 +30,8 @@ public class ReservacionService {
 	
 	/** injectando bean ClienteRepository */
 	@Autowired private ClienteRepository clienteRepository;	
+	
+	@Autowired private DisfrazService disfrazService;
 	
 	
 	/** metodo que lista todas las reservaciones */
@@ -59,6 +62,11 @@ public class ReservacionService {
 	 * @param id para encontrar y eliminar la reservacion
 	 * */
 	public void deleteReservacion(int id) {
+		Optional<Reservacion> reservacion = reservacionRepository.findById(id);
+		Disfraz disfraz = reservacion.get().getCostume();
+		disfraz.setReserva(false);
+		disfrazService.save(disfraz);		
+		//System.out.println(disfraz.getId());
 		reservacionRepository.deleteById(id);
 	}
 	
@@ -210,6 +218,10 @@ public class ReservacionService {
 		
 		return clientesOrdenados;
 	}
+	
+//	public List<Reservacion> reservacionCliente(int id){
+//		
+//	}
 	
 	
 	

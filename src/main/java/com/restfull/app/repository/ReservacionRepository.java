@@ -8,5 +8,7 @@ import com.restfull.app.entity.Reservacion;
 
 @Repository
 public interface ReservacionRepository extends JpaRepository<Reservacion, Integer>{
+	
+	
 
 }

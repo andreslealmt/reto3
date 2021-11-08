@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.restfull.app.entity.Cliente;
 import com.restfull.app.service.ClienteService;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+
+
 @RestController
 @RequestMapping("/api/Client/")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
@@ -51,12 +55,22 @@ public class ClienteController {
 			return ResponseEntity.notFound().build();
 		}
 		
-		newCliente.get().setAge(cliente.getAge());
-		newCliente.get().setEmail(cliente.getEmail());
+		
+		String passwordHashed = newCliente.get().getPassword();
+		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+		
+		if(argon2.verify(passwordHashed, cliente.getPassword())) {
+			newCliente.get().setAge(cliente.getAge());		
+			newCliente.get().setName(cliente.getName());		
+			return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.saveClienteUpdate(newCliente.get()));
+		}		
+		
+		
+		newCliente.get().setAge(cliente.getAge());		
 		newCliente.get().setName(cliente.getName());
 		newCliente.get().setPassword(cliente.getPassword());
-		
 		return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.saveCliente(newCliente.get()));
+				
 	}
 	
 	
